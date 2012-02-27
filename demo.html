@@ -24,7 +24,11 @@
 </div>
 <script type="text/javascript">
 	jQuery(window).load(function(){
-		jQuery("ul > li > img").ImageCrop();
+		jQuery("ul > li > img").ImageCrop(
+		{
+			'topalign' : 'top',
+			'leftalign' : 'left'
+		});
 	});
 </script>
 </body>

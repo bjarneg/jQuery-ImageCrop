@@ -23,36 +23,51 @@
                 var $that = jQuery(this);
                 var w = $that.width();
                 var h = $that.height();
-				
-				// Default, center
-				var offsetLeft = parseInt((w - o.w) / 2);
-				
-				var offsetTop = parseInt((w - o.h) / 2);
-				if (o.topalign === 'top')
-				{
-					offsetTop = 0;
-				}
-				else if (o.topalign === 'bottom')
-				{
-					offsetTop = parseInt(w - o.h) 
-				}
-				if (o.leftalign === 'left')
-				{
-					offsetLeft = 0;
-				}
-				else if (o.leftalign === 'right')
-				{
-					offsetLeft = parseInt(w - o.w) 
-				}				
-				
                 
+                var offsetLeft = 0;
+				var offsetTop = 0;
+				
+				if (w > o.w)
+				{
+					// Default, center
+					offsetLeft = parseInt((w - o.w) / 2);
+					if (o.leftalign === 'left')
+					{
+						offsetLeft = 0;
+					}
+					else if (o.leftalign === 'right')
+					{
+						offsetLeft = parseInt(w - o.w) 
+					}				
+				}
+				if (h > o.h)
+				{
+				
+					offsetTop = parseInt((h - o.h) / 2);
+	
+					if (o.topalign === 'top')
+					{
+						offsetTop = 0;
+					}
+					else if (o.topalign === 'bottom')
+					{
+						offsetTop = parseInt(h - o.h) 
+					}
+					
+				}                
                 
                 
                 
                 $that.wrap('<div style="width:' + o.w + 'px;height:' + o.h + 'px;overflow:hidden;"></div>');
-            	$that.css("margin-top","-" + offsetTop + "px");
-                $that.css("margin-left","-" + offsetLeft + "px");
-            });
+                if (offsetTop > 0)
+                {
+                	$that.css("margin-top","-" + offsetTop + "px");
+                }
+            	if (offsetLeft > 0)
+            	{
+	                $that.css("margin-left","-" + offsetLeft + "px");
+    			}
+    		});
         }
     });
     
